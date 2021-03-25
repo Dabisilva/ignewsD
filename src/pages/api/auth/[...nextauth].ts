@@ -15,6 +15,10 @@ export default NextAuth({
   callbacks: {
     async signIn(user, account, profile) {
       const { email } = user;
+
+      // console.log(user);
+
+      // return true;
       try {
         await fauna.query(
           query.If(
@@ -29,6 +33,7 @@ export default NextAuth({
             )
           )
         );
+
         return true;
       } catch {
         return false;
