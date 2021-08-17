@@ -53,7 +53,6 @@ export const getStaticProps: GetStaticProps = async () => {
     }
   );
 
-  let options = { day: "numeric", month: "long", year: "numeric" };
   const posts = response.results.map((post) => {
     return {
       slug: post.uid,
