@@ -10,6 +10,7 @@ import { useEffect } from "react";
 import { getPrismicClient } from "../../../services/prismic";
 
 import styles from "../post.module.scss";
+import { SessionProps } from "../[slug]";
 
 interface PostPreviewProps {
   post: {
@@ -20,22 +21,17 @@ interface PostPreviewProps {
   };
 }
 
-interface SessionProps {
-  accessToken?: string;
-  expires: string;
-  activeSubscription?: object;
-  user: WithAdditionalParams<User>;
-}
-
 export default function PostPreview({ post }: PostPreviewProps) {
   const [session] = useSession();
   const router = useRouter();
+  const sessionSubscription = session as SessionProps;
 
   useEffect(() => {
-    if (!session?.activeSubscription) {
+    if (!sessionSubscription.activeSubscription) {
       router.push(`/posts/${post.slug}`);
     }
   }, [session]);
+
   return (
     <>
       <Head>
