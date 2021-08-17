@@ -17,10 +17,10 @@ interface PostProps {
   };
 }
 
-interface SessionProps {
+export interface SessionProps {
   accessToken?: string;
   expires: string;
-  activeSubscription?: object;
+  activeSubscription?: object | null;
   user: WithAdditionalParams<User>;
 }
 
