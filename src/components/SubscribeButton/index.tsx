@@ -6,7 +6,11 @@ import { getStripejS } from "../../services/stripe-js";
 
 import styles from "./styles.module.scss";
 
-export function SubscribeButton() {
+interface SubscribeButtonProps {
+  priceId: string;
+}
+
+export function SubscribeButton({ priceId }: SubscribeButtonProps) {
   const [session] = useSession();
   const router = useRouter();
   const sessionSubscription = session as SessionProps;
@@ -16,7 +20,7 @@ export function SubscribeButton() {
       return;
     }
 
-    if (sessionSubscription?.activeSubscription) {
+    if (sessionSubscription.activeSubscription) {
       router.push("/posts");
 
       return;
