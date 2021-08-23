@@ -1,7 +1,6 @@
 import { GetServerSideProps } from "next";
 import { User } from "next-auth";
 import { getSession } from "next-auth/client";
-import { WithAdditionalParams } from "next-auth/_utils";
 import Head from "next/head";
 import { RichText } from "prismic-dom";
 import { getPrismicClient } from "../../services/prismic";
@@ -19,9 +18,9 @@ interface PostProps {
 
 export interface SessionProps {
   accessToken?: string;
-  expires: string;
+  expires?: string;
   activeSubscription?: object | null;
-  user: WithAdditionalParams<User>;
+  user?: User;
 }
 
 export default function Post({ post }: PostProps) {
